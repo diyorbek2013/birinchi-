@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar + Carousel</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* NAVBAR */
+    nav {
+      background-color: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        background-color: #333;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* CAROUSEL */
+    .carousel-container {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      font-size: 30px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Sayt Logo</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Bosh sahifa</a></li>
+      <li><a href="#">Haqida</a></li>
+      <li><a href="#">Xizmatlar</a></li>
+      <li><a href="#">Bog'lanish</a></li>
+    </ul>
+  </nav>
+
+  <!-- CAROUSEL -->
+  <div class="carousel-container">
+    <div class="carousel-slide" id="carouselSlide">
+      <img src="https://sun9-40.userapi.com/s/v1/ig2/HysVX4WBg4qGvgprTxiyvyLNfmTISwJcD5LfxlHfesFseoBpuVBXfsdrHN5GF_EP5BD9IpC7QAoDo4kEunNivz_N.jpg?quality=95&crop=63,181,505,505&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480&ava=1&u=4lfQyTbVMw_bQn6_gIHwLBXxwuljontmOnrfijNULJc&cs=400x400" alt="Rasm 1">
+      <img src="https://tse3.mm.bing.net/th?id=OIP._Z885l6rpIKS8XSRf_nuEQHaM8&pid=15.1" alt="Rasm 2">
+      <img src="https://www.azhan.co/wp-content/uploads/2016/04/Hala-Madrid-Wallpaper-768x432.jpg" alt="Rasm 3">
+    </div>
+    <div class="prev" onclick="prevSlide()">&#10094;</div>
+    <div class="next" onclick="nextSlide()">&#10095;</div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+
+    const slide = document.getElementById("carouselSlide");
+    const images = slide.querySelectorAll("img");
+    let counter = 0;
+
+    function showSlide(index) {
+      if (index < 0) counter = images.length - 1;
+      else if (index >= images.length) counter = 0;
+      else counter = index;
+
+      slide.style.transform = `translateX(-${counter * 100}%)`;
+    }
+
+    function nextSlide() {
+      showSlide(counter + 1);
+    }
+
+    function prevSlide() {
+      showSlide(counter - 1);
+    }
+
+    setInterval(() => {
+      nextSlide();
+    }, 4000); // avtomatik 4 soniyada almashadi
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar va Cards</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .nav-links {
+        flex-direction: column;
+        display: none;
+        position: absolute;
+        background-color: #333;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* CARD SECTION */
+    .card-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+      flex: 1;
+    }
+    .card-content h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #333;
+    }
+    .card-content p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .card-content .btn-card {
+      display: inline-block;
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .card-content .btn-card:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Mening Saytim</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Bosh sahifa</a></li>
+      <li><a href="#">Haqida</a></li>
+      <li><a href="#">Xizmatlar</a></li>
+      <li><a href="#">Bog'lanish</a></li>
+    </ul>
+  </nav>
+
+  <!-- CARD SECTION: 2 qator card -->
+  <section class="card-section">
+    <div class="card-container">
+      <!-- Card 1 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1011/400/150" alt="Card Image 1">
+        <div class="card-content">
+          <h3>Sarlavha 1</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1012/400/150" alt="Card Image 2">
+        <div class="card-content">
+          <h3>Sarlavha 2</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1013/400/150" alt="Card Image 3">
+        <div class="card-content">
+          <h3>Sarlavha 3</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1014/400/150" alt="Card Image 4">
+        <div class="card-content">
+          <h3>Sarlavha 4</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1015/400/150" alt="Card Image 5">
+        <div class="card-content">
+          <h3>Sarlavha 5</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="card">
+        <img src="https://picsum.photos/id/1016/400/150" alt="Card Image 6">
+        <div class="card-content">
+          <h3>Sarlavha 6</h3>
+          <p>Bu yerda qisqa matn bo'ladi. Misol uchun xizmat tavsifi.</p>
+          <a href="#" class="btn-card">Batafsil</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT NAVIGATION -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+
+</body>
+<
+</body>
+</html>
